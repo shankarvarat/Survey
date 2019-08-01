@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>index</title>
-</head>
-<body>
-<h1>Welcome!!</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}! <br>
+  <a href="/logout">Logout</a>
+</div>
+<div>
+<form method="POST" action="question">
+  <h1>Select Main category For Servey !!</h1>
+
+  {% for cat in main_cat%}
+  <button type="submit">{{cat}}</button>
+  {% endfor%}
+
+</form>
+</div>
+
+
+
+
+
+
+{% else %}
+<div class="alert">
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+</div>
+{% endif %}
+{% endblock %}
