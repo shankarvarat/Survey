@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
-from django.contrib.auth import logout
+from django.contrib.auth import logout as lo
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
@@ -46,8 +46,24 @@ def login(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'login.html')
+@login_required
 def logout(request):
-            logout(request)
+            lo(request)
             return redirect("/index")
+
+def subcat(request):
+    if request.method=='POST':
+        mcat = request.POST.get('one')
+        sub_cat = sub_category.objects.filter(sub_cat_name__icontains=mcat)
+
+        return render(request,'index2.html',{'sub_cat':sub_cat})
+
+def question(request):
+    #if request.method=='POST':
+        #c = request.POST.get('one')
+        #ques = question.objects.filter(question__icontains=c)
+        ques=question.objetcs.all()
+
+        return render(request,'question.html',{'ques':ques})
 
 

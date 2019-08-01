@@ -7,5 +7,7 @@ urlpatterns = [
     path('signup', signup, name='signup'),
     path('logout', logout, name='logout'),
     path('index', home, name='index'),
+    path('subcat', subcat, name='subcat'),
+    path('question', question, name='question'),
 
 ]

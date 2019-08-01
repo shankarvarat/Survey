@@ -24,10 +24,13 @@ class question(models.Model):
     option2 = models.CharField(max_length=150,null=True)
     option3 = models.CharField(max_length=150, null=True)
     option4 = models.CharField(max_length=150, null=True)
+    def __str__(self):
+        return self.question
 
 class UserResponse(models.Model):
     user=models.ForeignKey(User,on_delete='CASCADE')
     question = models.CharField(max_length=200)
     sub_cat_name=models.CharField(max_length=200)
     ans1=models.CharField(max_length=80)
+
 
